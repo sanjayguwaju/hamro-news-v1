@@ -4,7 +4,11 @@ services:
   payload:
     build: .
     restart: always
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
     env_file:
       - .env
