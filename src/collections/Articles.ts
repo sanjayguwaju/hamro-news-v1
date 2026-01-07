@@ -1,4 +1,24 @@
 import type { CollectionConfig } from "payload";
+import {
+  AlignFeature,
+  BlockquoteFeature,
+  BlocksFeature,
+  ChecklistFeature,
+  FixedToolbarFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  HTMLConverterFeature,
+  IndentFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
+  LinkFeature,
+  OrderedListFeature,
+  RelationshipFeature,
+  EXPERIMENTAL_TableFeature,
+  UnorderedListFeature,
+  UploadFeature,
+} from "@payloadcms/richtext-lexical";
+import { Banner } from "@/blocks/Banner";
 
 export const Articles: CollectionConfig = {
   slug: "articles",
@@ -134,6 +154,19 @@ export const Articles: CollectionConfig = {
     {
       name: "content",
       type: "richText",
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          BlocksFeature({ blocks: [Banner] }),
+          FixedToolbarFeature(),
+          InlineToolbarFeature(),
+          EXPERIMENTAL_TableFeature(),
+          ChecklistFeature(),
+          RelationshipFeature({
+            enabledCollections: ["articles", "pages", "authors"],
+          }),
+        ],
+      }),
       required: true,
     },
     {

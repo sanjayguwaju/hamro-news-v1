@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, Calendar, Eye, Share2, Twitter, Facebook, Linkedin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { RichText } from "@/components/RichText";
 import { formatDate, formatReadTime, formatNumber } from "@/utils/format";
 import { getImageUrl, getImageAlt } from "@/utils/image";
 import { getCategoryUrl, getAuthorUrl, absoluteUrl, getArticleUrl } from "@/utils/url";
@@ -140,14 +141,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
       {/* Content */}
       <div className="mx-auto mt-8 max-w-3xl lg:mt-12">
         <div className="prose-editorial">
-          {/* Rich text content would be rendered here */}
-          <div className="text-ink-200 text-lg leading-relaxed">
-            {/* This would use a Lexical renderer or similar */}
-            <p>
-              Article content would be rendered here using a Lexical/Rich Text renderer. The content
-              is stored as structured data and needs to be serialized to HTML/React components.
-            </p>
-          </div>
+          <RichText data={article.content} className="text-ink-200 text-lg leading-relaxed" />
         </div>
 
         {/* Tags */}
